@@ -1,0 +1,49 @@
+using System;
+					
+public class Program
+{
+	int[] numbers;
+	bool thereIsK;
+	int k, index;
+	
+	public void Main()
+	{
+		string numbersStr = Console.ReadLine();
+		k = int.Parse(Console.ReadLine());
+		
+		numbers = StringToIntArray(numbersStr);
+		
+		Action<int> SearchForK = new Action<int>(SumWithRestOfPositions);
+		
+		index = -1;
+		Array.ForEach(numbers, SearchForK);
+		
+		Console.WriteLine(thereIsK);
+		
+	}
+	
+	int[] StringToIntArray(string numbers)
+	{		
+		int[] temp = Array.ConvertAll
+			(numbers.Split(' '), 
+			 new Converter<string, int>(StringToInt));
+		
+		return temp;
+	}
+	
+	void SumWithRestOfPositions(int num)
+	{		
+		index++;
+		for(int i = 0; i < numbers.Length; i++)
+		{
+			if(index == i) continue;
+			if(thereIsK) break;
+			int a = num + numbers[i];
+			thereIsK = a == k;
+			
+			Console.WriteLine("Index is: {3}. {0} + {1} = {2}", num, numbers[i], a, index);
+		}
+	}
+	
+	int StringToInt(string enter) { return int.Parse(enter); }
+}
