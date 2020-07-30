@@ -1,0 +1,27 @@
+using System;
+					
+public class Program
+{
+	public void Main()
+	{
+		Console.WriteLine("Please introduce the numbers of the array separated with 1 space.");
+		
+		//	Get the data as a string of the numbers separated whit 1 space, split it and convert that string array to an int array.
+		int[] numbers = Array.ConvertAll(Console.ReadLine().Split(' '), 
+										 new Converter<string, int>(int.Parse));
+		
+		//	Go through all numbers and multiply each, except themselves.
+		int[] results = new int[numbers.Length];
+		
+		for(int i = 0; i < numbers.Length; i++)
+		{
+			results[i] = 1;
+			for(int h = 0; h < numbers.Length; h++)
+			{
+				if(i != h) results[i] *= numbers[h];
+			}
+			
+			Console.WriteLine(results[i]);
+		}
+	}
+}
